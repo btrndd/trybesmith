@@ -10,21 +10,6 @@ const create = rescue(async (
 ) => {
   const { username, classe, level, password } = req.body;
   const newUser = new User(username, classe, level, password);
-  // if (!name) {
-  //   const error = {
-  //     code: 'requiredParameter',
-  //     message: '"name" is required',
-  //   };
-  //   throw error;
-  // }
-  // if (!quantity && quantity !== 0) {
-  //   const error = {
-  //     code: 'requiredParameter',
-  //     message: '"quantity" is required',
-  //   };
-  //   throw error;
-  // }
-
   const result: CreatedUser = await userService.create(newUser);
   res.status(201).json(result);
 });
