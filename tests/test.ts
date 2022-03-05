@@ -197,7 +197,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     });
   });
 
-  it('Será validado que o campo "username" é enviado', async () => {
+  it.skip('Será validado que o campo "username" é enviado', async () => {
     const result = await request(app).post("/login").send({
       password: "senha1234",
     });
@@ -205,7 +205,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     expect(result.body.error).toEqual("Username is required");
   });
 
-  it('Será validado que o campo "password" é enviado', async () => {
+  it.skip('Será validado que o campo "password" é enviado', async () => {
     const result = await request(app).post("/login").send({
       username: "username",
     });
@@ -213,7 +213,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     expect(result.body.error).toEqual("Password is required");
   });
 
-  it('Será validado que não é possível fazer login com um username inválido',
+  it.skip('Será validado que não é possível fazer login com um username inválido',
     async () => {
       const result = await request(app).post("/login").send({
         username: "user",
@@ -224,7 +224,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     }
   );
 
-  it('Será validado que não é possível fazer login com uma senha inválida',
+  it.skip('Será validado que não é possível fazer login com uma senha inválida',
     async () => {
       const result = await request(app).post("/login").send({
         username: "username",
@@ -235,7 +235,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     }
   );
 
-  it('Será validado que é possível fazer login com sucesso', async () => {
+  it.skip('Será validado que é possível fazer login com sucesso', async () => {
     const result = await request(app).post("/login").send({
       username: "username",
       password: "senha1234",
@@ -269,7 +269,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
       });
   });
 
-  it('Será validado que não é possível cadastrar um produto sem token', async () => {
+  it.skip('Será validado que não é possível cadastrar um produto sem token', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: "amount",
@@ -279,7 +279,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it('Será validado que não é possível cadastrar um produto com um token inválido', async () => {
+  it.skip('Será validado que não é possível cadastrar um produto com um token inválido', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: "amount",
@@ -290,7 +290,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
   });
 
 
-  it('Será validado que o campo "name" é obrigatório', async () => {
+  it.skip('Será validado que o campo "name" é obrigatório', async () => {
     const result = await request(app).post("/products").send({
       amount: "amount",
     }).set("Authorization", token);
@@ -299,7 +299,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
     expect(result.body.error).toEqual("Name is required");
   });
 
-  it('Será validado que o campo "name" tem o tipo string', async () => {
+  it.skip('Será validado que o campo "name" tem o tipo string', async () => {
     const result = await request(app).post("/products").send({
       name: 1,
       amount: "amount",
@@ -309,7 +309,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
     expect(result.body.error).toEqual("Name must be a string");
   });
 
-  it('Será validado que o campo "name" é uma string com mais de 2 caracteres', async () => {
+  it.skip('Será validado que o campo "name" é uma string com mais de 2 caracteres', async () => {
     const result = await request(app).post("/products").send({
       name: "1",
       amount: "amount",
@@ -320,7 +320,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
   });
 
 
-  it('Será validado que o campo "amount" é obrigatório', async () => {
+  it.skip('Será validado que o campo "amount" é obrigatório', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
     }).set("Authorization", token);
@@ -329,7 +329,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
     expect(result.body.error).toEqual("Amount is required");
   });
 
-  it('Será validado que o campo "amount" tem o tipo string', async () => {
+  it.skip('Será validado que o campo "amount" tem o tipo string', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: 1,
@@ -339,7 +339,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
     expect(result.body.error).toEqual("Amount must be a string");
   });
 
-  it('Será validado que o campo "amount" é uma string com mais de 2 caracteres', async () => {
+  it.skip('Será validado que o campo "amount" é uma string com mais de 2 caracteres', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: "1",
@@ -350,7 +350,7 @@ describe("3 - Crie um endpoint para o cadastro de produtos", () => {
   });
 
 
-  it('Será validado que é possível cadastrar um produto com sucesso', async () => {
+  it.skip('Será validado que é possível cadastrar um produto com sucesso', async () => {
     const result = await request(app).post("/products").send({
       name: "name",
       amount: "amount",
@@ -388,14 +388,14 @@ describe("4 - Crie um endpoint para a listagem de produtos", () => {
     }).set("Authorization", token);
   });
 
-  it('Será validado que não é possível listar todos os produtos sem token', async () => {
+  it.skip('Será validado que não é possível listar todos os produtos sem token', async () => {
     const result = await request(app).get("/products");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it('Será validado que não é possível listar todos os produtos com um token inválido', async () => {
+  it.skip('Será validado que não é possível listar todos os produtos com um token inválido', async () => {
     const result = await request(app).get("/products").set("Authorization", "Bearer 123");
 
     expect(result.statusCode).toEqual(401);
@@ -403,7 +403,7 @@ describe("4 - Crie um endpoint para a listagem de produtos", () => {
   });
 
 
-  it('Será validado que é possível listar todos os produtos com sucesso', async () => {
+  it.skip('Será validado que é possível listar todos os produtos com sucesso', async () => {
     const result = await request(app).get("/products").set("Authorization", token);
 
     expect(result.statusCode).toEqual(200);
@@ -436,7 +436,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     token = result.body.token;
   });
 
-  it('Será validado que não é possível cadastrar pedidos sem token', async () => {
+  it.skip('Será validado que não é possível cadastrar pedidos sem token', async () => {
     ;
     const result = await request(app).post("/orders").send({
       products: [1, 2],
@@ -446,7 +446,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it('Será validado que não é possível cadastrar um pedido com token inválido', async () => {
+  it.skip('Será validado que não é possível cadastrar um pedido com token inválido', async () => {
     const result = await request(app).post("/orders").send({
       products: "amount",
     }).set("Authorization", "Bearer 123");
@@ -455,7 +455,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Invalid token");
   });
 
-  it('Será validado que o campo "products" é obrigatório"', async () => {
+  it.skip('Será validado que o campo "products" é obrigatório"', async () => {
     const result = await request(app).post("/orders").send({
     }).set("Authorization", token);
 
@@ -463,7 +463,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Products is required");
   });
 
-  it('Será validado que não é possível criar um pedido com o campo "products" não sendo um array', async () => {
+  it.skip('Será validado que não é possível criar um pedido com o campo "products" não sendo um array', async () => {
     const result = await request(app).post("/orders").send({
       products: "products",
     }).set("Authorization", token);
@@ -472,7 +472,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Products must be an array of numbers");
   });
 
-  it('Será validado que não é possível criar um pedido com o campo "products" vazio', async () => {
+  it.skip('Será validado que não é possível criar um pedido com o campo "products" vazio', async () => {
     const result = await request(app).post("/orders").send({
       products: [],
     }).set("Authorization", token);
@@ -481,7 +481,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Products can't be empty");
   });
 
-  it('Será validado que é possível criar um pedido com sucesso com 1 item', async () => {
+  it.skip('Será validado que é possível criar um pedido com sucesso com 1 item', async () => {
     await request(app).post("/products").send({
       name: "name",
       amount: "amount",
@@ -498,7 +498,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.order.products).toEqual([1]);
   });
 
-  it('Será validado que é possível criar um pedido com sucesso com vários itens', async () => {
+  it.skip('Será validado que é possível criar um pedido com sucesso com vários itens', async () => {
     await request(app).post("/products").send({
       name: "name",
       amount: "amount",
@@ -556,21 +556,21 @@ describe("6 - Crie um endpoint para consultar um pedido", () => {
     }).set("Authorization", token);
   });
 
-  it('Será validado que não é possível exibir um pedido sem token', async () => {
+  it.skip('Será validado que não é possível exibir um pedido sem token', async () => {
     const result = await request(app).get("/orders/1");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it('Será validado que não é possível exibir um pedido com token inválido', async () => {
+  it.skip('Será validado que não é possível exibir um pedido com token inválido', async () => {
     const result = await request(app).get("/orders/1").set("Authorization", "Bearer 123");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Invalid token");
   });
 
-  it('Será validado que não é possível exibir um pedido inexistente', async () => {
+  it.skip('Será validado que não é possível exibir um pedido inexistente', async () => {
     const result = await request(app).get("/orders/4").set("Authorization", token);
 
     expect(result.statusCode).toEqual(404);
@@ -578,7 +578,7 @@ describe("6 - Crie um endpoint para consultar um pedido", () => {
   });
 
 
-  it('Será validado que é possível exibir um pedido com sucesso', async () => {
+  it.skip('Será validado que é possível exibir um pedido com sucesso', async () => {
     const result = await request(app).get("/orders/1").set("Authorization", token);
 
     expect(result.statusCode).toEqual(200);
@@ -589,7 +589,7 @@ describe("6 - Crie um endpoint para consultar um pedido", () => {
     expect(result.body.products).toEqual([1, 2]);
   });
 
-  it('Será validado que é possível exibir um pedido com sucesso buscando pelo seu id', async () => {
+  it.skip('Será validado que é possível exibir um pedido com sucesso buscando pelo seu id', async () => {
     const result = await request(app).get("/orders/2").set("Authorization", token);
 
     expect(result.statusCode).toEqual(200);
@@ -631,21 +631,21 @@ describe("7 - Crie um endpoint para listar todos os pedidos", () => {
     }).set("Authorization", token);
   });
 
-  it('Será validado que não é possível listar pedidos sem token', async () => {
+  it.skip('Será validado que não é possível listar pedidos sem token', async () => {
     const result = await request(app).get("/orders");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it('Será validado que não é possível listar pedidos com token inválido', async () => {
+  it.skip('Será validado que não é possível listar pedidos com token inválido', async () => {
     const result = await request(app).get("/orders").set("Authorization", "Bearer 123");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Invalid token");
   });
 
-  it('Será validado que é possível listar todos os pedidos com sucesso quando houver apenas um pedido', async () => {
+  it.skip('Será validado que é possível listar todos os pedidos com sucesso quando houver apenas um pedido', async () => {
     await request(app).post("/orders").send({
       products: [1],
     }).set("Authorization", token);
@@ -659,7 +659,7 @@ describe("7 - Crie um endpoint para listar todos os pedidos", () => {
     expect(result.body[0].products).toEqual([1]);
   });
 
-  it('Será validado que é possível listar todos os pedidos com sucesso quando hover mais de um pedido', async () => {
+  it.skip('Será validado que é possível listar todos os pedidos com sucesso quando hover mais de um pedido', async () => {
     await request(app).post("/orders").send({
       products: [1],
     }).set("Authorization", token);

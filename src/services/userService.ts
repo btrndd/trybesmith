@@ -40,12 +40,12 @@ const classeValidation = (user: User) => {
 };
 
 const levelValidation = (user: User) => {
-  if (!user.level) {
+  if (!user.level && user.level !== 0) {
     const error = new HttpException(EError.isRequired, 'Level is required');
     throw error;
   }
   if (typeof user.level !== 'number') {
-    const error = new HttpException(EError.invalidData, 'Level must be a string');
+    const error = new HttpException(EError.invalidData, 'Level must be a number');
     throw error;
   }
   if (user.level <= 0) {

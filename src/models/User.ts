@@ -20,7 +20,7 @@ class User {
 
   public async create(): Promise<CreatedUser> {
     const [rows] = await connection.execute<OkPacket>(
-      'INSERT INTO Users (username, classe, level, password) VALUES (?, ?, ?, ?)',
+      'INSERT INTO Trybesmith.Users (username, classe, level, password) VALUES (?, ?, ?, ?)',
       [this.username, this.classe, this.level, this.password],
     );
     const createdUser = {
