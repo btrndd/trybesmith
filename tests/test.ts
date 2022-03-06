@@ -197,7 +197,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     });
   });
 
-  it.skip('Será validado que o campo "username" é enviado', async () => {
+  it('Será validado que o campo "username" é enviado', async () => {
     const result = await request(app).post("/login").send({
       password: "senha1234",
     });
@@ -205,7 +205,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     expect(result.body.error).toEqual("Username is required");
   });
 
-  it.skip('Será validado que o campo "password" é enviado', async () => {
+  it('Será validado que o campo "password" é enviado', async () => {
     const result = await request(app).post("/login").send({
       username: "username",
     });
@@ -213,7 +213,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     expect(result.body.error).toEqual("Password is required");
   });
 
-  it.skip('Será validado que não é possível fazer login com um username inválido',
+  it('Será validado que não é possível fazer login com um username inválido',
     async () => {
       const result = await request(app).post("/login").send({
         username: "user",
@@ -224,7 +224,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     }
   );
 
-  it.skip('Será validado que não é possível fazer login com uma senha inválida',
+  it('Será validado que não é possível fazer login com uma senha inválida',
     async () => {
       const result = await request(app).post("/login").send({
         username: "username",
@@ -235,7 +235,7 @@ describe("2 - Crie um endpoint para o login de pessoas usuárias", () => {
     }
   );
 
-  it.skip('Será validado que é possível fazer login com sucesso', async () => {
+  it('Será validado que é possível fazer login com sucesso', async () => {
     const result = await request(app).post("/login").send({
       username: "username",
       password: "senha1234",

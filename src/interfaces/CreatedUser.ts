@@ -7,3 +7,7 @@ export interface CreatedUser {
 
   level: number;
 }
+
+export interface CompleteUser extends CreatedUser {
+  password: string;
+}

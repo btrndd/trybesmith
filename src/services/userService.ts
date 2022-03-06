@@ -1,4 +1,4 @@
-import { CreatedUser } from '../interfaces/CreatedUser';
+import { CompleteUser, CreatedUser } from '../interfaces/CreatedUser';
 import EError from '../interfaces/EError';
 import HttpException from '../interfaces/HttpException';
 import User from '../models/User';
@@ -84,4 +84,20 @@ const create = async (user: User): Promise<CreatedUser> => {
   return newUser;
 };
 
-export default { create };
+const login = async (user: User): Promise<CompleteUser> => {
+  usernameValidation(user);
+  passwordValidation(user);
+  const foundUser: CompleteUser = await user.getByUsername();
+
+  if (!foundUser || foundUser.password !== user.password) {
+    const error = new HttpException(
+      EError.notAuthorized,
+      'Username or password invalid',
+    );
+    throw error;
+  }
+
+  return foundUser;
+};
+
+export default { create, login };

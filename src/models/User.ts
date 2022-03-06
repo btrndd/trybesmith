@@ -1,5 +1,5 @@
-import { OkPacket } from 'mysql2';
-import { CreatedUser } from '../interfaces/CreatedUser';
+import { OkPacket, RowDataPacket } from 'mysql2';
+import { CompleteUser, CreatedUser } from '../interfaces/CreatedUser';
 import connection from './connection';
 
 class User {
@@ -12,10 +12,10 @@ class User {
   password: string;
 
   constructor(username: string, classe: string, level: number, password: string) {
-    this.username = username;
+    this.username = username;    
     this.classe = classe;
     this.level = level;
-    this.password = password;
+    this.password = password;   
   }
 
   public async create(): Promise<CreatedUser> {
@@ -30,6 +30,21 @@ class User {
       level: this.level,
     };
     return createdUser;
+  }
+
+  public async getByUsername(): Promise<CompleteUser> {
+    const [rows] = await connection.execute<RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.Users WHERE username = ?',
+      [this.username],
+    );
+    // const foundUser = {
+    //   id: rows[0].id,
+    //   username: this.username,
+    //   password: this.password,
+    //   classe: this.classe,
+    //   level: this.level,
+    // };
+    return rows[0] as CompleteUser;
   }
 
   // public static async getAll(): Promise<User> {
