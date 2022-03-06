@@ -13,7 +13,7 @@ const create = rescue(async (
   const newUser = new User(username, classe, level, password);
   const result: CreatedUser = await userService.create(newUser);
 
-  const { JWT_SECRET } = process.env;
+  const JWT_SECRET = 'Meusegredo';
   const token = jwt.sign(
     { id: result.id, username: result.username },
     JWT_SECRET || '',
@@ -31,7 +31,7 @@ const login = rescue(async (
   console.log(existingUser);
   const response: CompleteUser = await userService.login(existingUser);
 
-  const { JWT_SECRET } = process.env;
+  const JWT_SECRET = 'Meusegredo';
   const token = jwt.sign(
     { id: response.id, username: response.username },
     JWT_SECRET || '',
