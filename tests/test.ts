@@ -436,7 +436,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     token = result.body.token;
   });
 
-  it.skip('Será validado que não é possível cadastrar pedidos sem token', async () => {
+  it('Será validado que não é possível cadastrar pedidos sem token', async () => {
     ;
     const result = await request(app).post("/orders").send({
       products: [1, 2],
@@ -446,7 +446,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it.skip('Será validado que não é possível cadastrar um pedido com token inválido', async () => {
+  it('Será validado que não é possível cadastrar um pedido com token inválido', async () => {
     const result = await request(app).post("/orders").send({
       products: "amount",
     }).set("Authorization", "Bearer 123");
@@ -455,7 +455,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Invalid token");
   });
 
-  it.skip('Será validado que o campo "products" é obrigatório"', async () => {
+  it('Será validado que o campo "products" é obrigatório"', async () => {
     const result = await request(app).post("/orders").send({
     }).set("Authorization", token);
 
@@ -463,7 +463,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Products is required");
   });
 
-  it.skip('Será validado que não é possível criar um pedido com o campo "products" não sendo um array', async () => {
+  it('Será validado que não é possível criar um pedido com o campo "products" não sendo um array', async () => {
     const result = await request(app).post("/orders").send({
       products: "products",
     }).set("Authorization", token);
@@ -472,7 +472,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Products must be an array of numbers");
   });
 
-  it.skip('Será validado que não é possível criar um pedido com o campo "products" vazio', async () => {
+  it('Será validado que não é possível criar um pedido com o campo "products" vazio', async () => {
     const result = await request(app).post("/orders").send({
       products: [],
     }).set("Authorization", token);
@@ -481,7 +481,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.error).toEqual("Products can't be empty");
   });
 
-  it.skip('Será validado que é possível criar um pedido com sucesso com 1 item', async () => {
+  it('Será validado que é possível criar um pedido com sucesso com 1 item', async () => {
     await request(app).post("/products").send({
       name: "name",
       amount: "amount",
@@ -498,7 +498,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
     expect(result.body.order.products).toEqual([1]);
   });
 
-  it.skip('Será validado que é possível criar um pedido com sucesso com vários itens', async () => {
+  it('Será validado que é possível criar um pedido com sucesso com vários itens', async () => {
     await request(app).post("/products").send({
       name: "name",
       amount: "amount",

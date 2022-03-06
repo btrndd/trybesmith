@@ -20,8 +20,7 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
       JWT_SECRET,
       { algorithms: ['HS256'] },
     );
-    console.log(decoded);
-    // req.username = decoded.username;
+    res.locals.user = decoded;
     next();    
   } catch {
     res.status(401).json({ error: 'Invalid token' });    

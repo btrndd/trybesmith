@@ -1,6 +1,5 @@
 import rescue from 'express-rescue';
 import { Request, Response } from 'express';
-// import jwt from 'jsonwebtoken';
 import Product from '../models/Product';
 import { CompleteProduct, CreatedProduct } from '../interfaces/CreatedProduct';
 import productService from '../services/productService';
