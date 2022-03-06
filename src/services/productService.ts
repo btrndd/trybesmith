@@ -1,4 +1,4 @@
-import { CreatedProduct } from '../interfaces/CreatedProduct';
+import { CompleteProduct, CreatedProduct } from '../interfaces/CreatedProduct';
 import EError from '../interfaces/EError';
 import HttpException from '../interfaces/HttpException';
 import Product from '../models/Product';
@@ -46,4 +46,9 @@ const create = async (product: Product): Promise<CreatedProduct> => {
   return newUser;
 };
 
-export default { create };
+const getAll = async (product: Product): Promise<CompleteProduct[]> => {
+  const products: CompleteProduct[] = await product.getAll();
+  return products;
+};
+
+export default { create, getAll };

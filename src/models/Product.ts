@@ -1,5 +1,5 @@
-import { OkPacket } from 'mysql2';
-import { CreatedProduct } from '../interfaces/CreatedProduct';
+import { OkPacket, RowDataPacket } from 'mysql2';
+import { CompleteProduct, CreatedProduct } from '../interfaces/CreatedProduct';
 import connection from './connection';
 
 class Product {
@@ -25,13 +25,11 @@ class Product {
     return createdProduct;
   }
 
-  // public async getByUsername(): Promise<CompleteUser> {
-  //   const [rows] = await connection.execute<RowDataPacket[]>(
-  //     'SELECT * FROM Trybesmith.Users WHERE username = ?',
-  //     [this.username],
-  //   );
-  //   return rows[0] as CompleteUser;
-  // }
+  public async getAll(): Promise<CompleteProduct[]> {
+    const [rows] = await connection.execute<RowDataPacket[]>('SELECT * FROM Trybesmith.Products');
+    console.log(this.name);
+    return rows as CompleteProduct[];
+  }
 }
 
 export default Product;

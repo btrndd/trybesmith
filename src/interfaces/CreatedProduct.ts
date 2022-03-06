@@ -5,3 +5,7 @@ export interface CreatedProduct {
 
   amount: string;
 }
+
+export interface CompleteProduct extends CreatedProduct {
+  orderId?: number;
+}

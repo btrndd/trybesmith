@@ -2,7 +2,7 @@ import rescue from 'express-rescue';
 import { Request, Response } from 'express';
 // import jwt from 'jsonwebtoken';
 import Product from '../models/Product';
-import { CreatedProduct } from '../interfaces/CreatedProduct';
+import { CompleteProduct, CreatedProduct } from '../interfaces/CreatedProduct';
 import productService from '../services/productService';
 
 const create = rescue(async (
@@ -16,4 +16,14 @@ const create = rescue(async (
   res.status(201).json({ item: result });
 });
 
-export default { create };
+const getAll = rescue(async (
+  req: Request,
+  res: Response,
+) => {
+  const product = new Product('name', 'amount');
+  const result: CompleteProduct[] = await productService.getAll(product);
+
+  res.status(200).json(result);
+});
+
+export default { create, getAll };
