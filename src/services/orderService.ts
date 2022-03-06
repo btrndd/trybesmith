@@ -1,5 +1,6 @@
 import EError from '../interfaces/EError';
 import HttpException from '../interfaces/HttpException';
+import CompleteOrder from '../models/CompleteOrder';
 import Order from '../models/Order';
 
 const productsValidation = (order: Order) => {
@@ -26,4 +27,13 @@ const create = async (order: Order): Promise<Order> => {
   return newOrder;
 };
 
-export default { create };
+const getById = async (order: CompleteOrder): Promise<CompleteOrder> => {
+  const newOrder: CompleteOrder | undefined = await order.getById();
+  if (!newOrder) {
+    const error = new HttpException(EError.notFound, 'Order not found');
+    throw error;
+  }
+  return newOrder;
+};
+
+export default { create, getById };

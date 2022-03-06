@@ -2,6 +2,7 @@ import rescue from 'express-rescue';
 import { Request, Response } from 'express';
 import Order from '../models/Order';
 import orderService from '../services/orderService';
+import CompleteOrder from '../models/CompleteOrder';
 
 const create = rescue(async (
   req: Request,
@@ -15,4 +16,14 @@ const create = rescue(async (
   res.status(201).json({ order: result });
 });
 
-export default { create };
+const getById = rescue(async (
+  req: Request,
+  res: Response,
+) => {
+  const { id } = req.params;
+  const order = new CompleteOrder(parseInt(id, 10), 1, [1]);
+  const result: CompleteOrder = await orderService.getById(order);
+  res.status(200).json(result);
+});
+
+export default { create, getById };

@@ -556,21 +556,21 @@ describe("6 - Crie um endpoint para consultar um pedido", () => {
     }).set("Authorization", token);
   });
 
-  it.skip('Será validado que não é possível exibir um pedido sem token', async () => {
+  it('Será validado que não é possível exibir um pedido sem token', async () => {
     const result = await request(app).get("/orders/1");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it.skip('Será validado que não é possível exibir um pedido com token inválido', async () => {
+  it('Será validado que não é possível exibir um pedido com token inválido', async () => {
     const result = await request(app).get("/orders/1").set("Authorization", "Bearer 123");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Invalid token");
   });
 
-  it.skip('Será validado que não é possível exibir um pedido inexistente', async () => {
+  it('Será validado que não é possível exibir um pedido inexistente', async () => {
     const result = await request(app).get("/orders/4").set("Authorization", token);
 
     expect(result.statusCode).toEqual(404);
@@ -578,7 +578,7 @@ describe("6 - Crie um endpoint para consultar um pedido", () => {
   });
 
 
-  it.skip('Será validado que é possível exibir um pedido com sucesso', async () => {
+  it('Será validado que é possível exibir um pedido com sucesso', async () => {
     const result = await request(app).get("/orders/1").set("Authorization", token);
 
     expect(result.statusCode).toEqual(200);
@@ -589,7 +589,7 @@ describe("6 - Crie um endpoint para consultar um pedido", () => {
     expect(result.body.products).toEqual([1, 2]);
   });
 
-  it.skip('Será validado que é possível exibir um pedido com sucesso buscando pelo seu id', async () => {
+  it('Será validado que é possível exibir um pedido com sucesso buscando pelo seu id', async () => {
     const result = await request(app).get("/orders/2").set("Authorization", token);
 
     expect(result.statusCode).toEqual(200);
