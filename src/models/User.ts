@@ -37,20 +37,8 @@ class User {
       'SELECT * FROM Trybesmith.Users WHERE username = ?',
       [this.username],
     );
-    // const foundUser = {
-    //   id: rows[0].id,
-    //   username: this.username,
-    //   password: this.password,
-    //   classe: this.classe,
-    //   level: this.level,
-    // };
     return rows[0] as CompleteUser;
   }
-
-  // public static async getAll(): Promise<User> {
-  //   const [rows] = await connection.execute<RowDataPacket[]>('SELECT * FROM products');
-  //   return rows as User[];
-  // }
 }
 
 export default User;

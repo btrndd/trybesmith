@@ -28,7 +28,6 @@ const login = rescue(async (
   res: Response,
 ) => {
   const existingUser = new User(req.body.username, 'classe', 1, req.body.password);
-  console.log(existingUser);
   const response: CompleteUser = await userService.login(existingUser);
 
   const JWT_SECRET = 'Meusegredo';
