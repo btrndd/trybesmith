@@ -26,4 +26,14 @@ const getById = rescue(async (
   res.status(200).json(result);
 });
 
-export default { create, getById };
+const getAll = rescue(async (
+  req: Request,
+  res: Response,
+) => {
+  const { user } = res.locals;
+  const order = new Order(user.id, [1]);
+  const result: CompleteOrder[] = await orderService.getAll(order);
+  res.status(200).json(result);
+});
+
+export default { create, getById, getAll };

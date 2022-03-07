@@ -1,4 +1,5 @@
-import { OkPacket } from 'mysql2';
+import { OkPacket, RowDataPacket } from 'mysql2';
+import { CreatedOrder } from '../interfaces/CreatedOrder';
 import connection from './connection';
 
 class Order {
@@ -28,6 +29,14 @@ class Order {
     };
     return order as Order;
   }
+  
+  public async getAll(): Promise<CreatedOrder[]> {
+    const [rows] = await connection.execute<RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.Orders',
+    );
+    console.log(this.userId);
+    return rows as CreatedOrder[];
+  }  
 }
 
 export default Order;

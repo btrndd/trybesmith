@@ -631,21 +631,21 @@ describe("7 - Crie um endpoint para listar todos os pedidos", () => {
     }).set("Authorization", token);
   });
 
-  it.skip('Será validado que não é possível listar pedidos sem token', async () => {
+  it('Será validado que não é possível listar pedidos sem token', async () => {
     const result = await request(app).get("/orders");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Token not found");
   });
 
-  it.skip('Será validado que não é possível listar pedidos com token inválido', async () => {
+  it('Será validado que não é possível listar pedidos com token inválido', async () => {
     const result = await request(app).get("/orders").set("Authorization", "Bearer 123");
 
     expect(result.statusCode).toEqual(401);
     expect(result.body.error).toEqual("Invalid token");
   });
 
-  it.skip('Será validado que é possível listar todos os pedidos com sucesso quando houver apenas um pedido', async () => {
+  it('Será validado que é possível listar todos os pedidos com sucesso quando houver apenas um pedido', async () => {
     await request(app).post("/orders").send({
       products: [1],
     }).set("Authorization", token);
@@ -659,7 +659,7 @@ describe("7 - Crie um endpoint para listar todos os pedidos", () => {
     expect(result.body[0].products).toEqual([1]);
   });
 
-  it.skip('Será validado que é possível listar todos os pedidos com sucesso quando hover mais de um pedido', async () => {
+  it('Será validado que é possível listar todos os pedidos com sucesso quando hover mais de um pedido', async () => {
     await request(app).post("/orders").send({
       products: [1],
     }).set("Authorization", token);

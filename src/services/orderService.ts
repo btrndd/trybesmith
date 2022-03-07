@@ -1,3 +1,4 @@
+import { CreatedOrder } from '../interfaces/CreatedOrder';
 import EError from '../interfaces/EError';
 import HttpException from '../interfaces/HttpException';
 import CompleteOrder from '../models/CompleteOrder';
@@ -36,4 +37,17 @@ const getById = async (order: CompleteOrder): Promise<CompleteOrder> => {
   return newOrder;
 };
 
-export default { create, getById };
+const getAll = async (order: Order): Promise<CompleteOrder[]> => {
+  const ordersList: CreatedOrder[] = await order.getAll();
+  
+  const orders: CompleteOrder[] = ordersList.map(
+    (ord) => new CompleteOrder(ord.id, ord.userId, []),
+  );
+
+  const queries = orders.map(async (ordr) => ordr.getById());
+  const result = await Promise.all(queries);
+
+  return result as CompleteOrder[];
+};
+
+export default { create, getById, getAll };
